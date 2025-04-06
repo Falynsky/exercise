@@ -2,9 +2,10 @@ package com.falynsky.workout.application;
 
 import com.falynsky.workout.application.usecase.AddNewExerciseDTO;
 import com.falynsky.workout.application.usecase.AddNewExerciseUseCase;
-import com.falynsky.workout.domain.Exercise;
-import com.falynsky.workout.domain.ExerciseType;
-import com.falynsky.workout.domain.MuscleGroup;
+import com.falynsky.workout.domain.ExerciseRepository;
+import com.falynsky.workout.domain.model.Exercise;
+import com.falynsky.workout.domain.model.ExerciseType;
+import com.falynsky.workout.domain.model.MuscleGroup;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 

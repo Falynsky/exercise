@@ -3,7 +3,7 @@ package com.falynsky.workout.infrastructure;
 import com.falynsky.workout.adapters.out.jpa.ExerciseRepositoryAdapter;
 import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpaRepository;
 import com.falynsky.workout.application.ExerciseServiceFacade;
-import com.falynsky.workout.application.ExerciseRepository;
+import com.falynsky.workout.domain.ExerciseRepository;
 import com.falynsky.workout.application.usecase.AddNewExerciseUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

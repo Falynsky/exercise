@@ -1,6 +1,6 @@
-package com.falynsky.workout.application;
+package com.falynsky.workout.domain;
 
-import com.falynsky.workout.domain.Exercise;
+import com.falynsky.workout.domain.model.Exercise;
 
 public interface ExerciseRepository {
 

@@ -2,8 +2,8 @@ package com.falynsky.workout.adapters.out.jpa;
 
 import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpa;
 import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpaRepository;
-import com.falynsky.workout.application.ExerciseRepository;
-import com.falynsky.workout.domain.Exercise;
+import com.falynsky.workout.domain.ExerciseRepository;
+import com.falynsky.workout.domain.model.Exercise;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

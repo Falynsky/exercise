@@ -1,7 +1,7 @@
-package com.falynsky.workout.adatpers.out.jpa;
+package com.falynsky.workout.adapters.out.jpa;
 
-import com.falynsky.workout.adatpers.out.jpa.exercise.ExerciseJpa;
-import com.falynsky.workout.adatpers.out.jpa.exercise.ExerciseJpaRepository;
+import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpa;
+import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpaRepository;
 import com.falynsky.workout.application.ExerciseRepository;
 import com.falynsky.workout.domain.Exercise;
 import lombok.AllArgsConstructor;

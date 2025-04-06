@@ -1,4 +1,4 @@
-package com.falynsky.workout.adatpers.out.jpa.exercise;
+package com.falynsky.workout.adapters.out.jpa.exercise;
 
 import jakarta.persistence.*;
 import lombok.Getter;

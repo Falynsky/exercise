@@ -1,4 +1,4 @@
-package com.falynsky.workout.adatpers.out.jpa.exercise;
+package com.falynsky.workout.adapters.out.jpa.exercise;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

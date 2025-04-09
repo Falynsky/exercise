@@ -16,7 +16,7 @@ public class MainConfiguration {
     private final ExerciseJpaRepository exerciseJpaRepository;
 
     @Bean
-    public AddNewExerciseUseCase exerciseFacade() {
+    public AddNewExerciseUseCase addNewExerciseUseCase() {
         return new ExerciseServiceFacade(exerciseRepository());
     }
 

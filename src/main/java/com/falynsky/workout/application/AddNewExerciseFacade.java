@@ -10,7 +10,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class ExerciseServiceFacade implements AddNewExerciseUseCase {
+public class AddNewExerciseFacade implements AddNewExerciseUseCase {
 
     private final ExerciseRepository exerciseRepository;
 

@@ -2,7 +2,9 @@ package com.falynsky.workout.infrastructure;
 
 import com.falynsky.workout.adapters.out.jpa.ExerciseRepositoryAdapter;
 import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpaRepository;
-import com.falynsky.workout.application.ExerciseServiceFacade;
+import com.falynsky.workout.application.AddNewExerciseFacade;
+import com.falynsky.workout.application.GetExerciseFacade;
+import com.falynsky.workout.application.usecase.GetExerciseUseCase;
 import com.falynsky.workout.domain.ExerciseRepository;
 import com.falynsky.workout.application.usecase.AddNewExerciseUseCase;
 import lombok.AllArgsConstructor;
@@ -17,7 +19,7 @@ public class MainConfiguration {
 
     @Bean
     public AddNewExerciseUseCase addNewExerciseUseCase() {
-        return new ExerciseServiceFacade(exerciseRepository());
+        return new AddNewExerciseFacade(exerciseRepository());
     }
 
     @Bean
@@ -25,4 +27,8 @@ public class MainConfiguration {
         return new ExerciseRepositoryAdapter(exerciseJpaRepository);
     }
 
+    @Bean
+    public GetExerciseUseCase getExerciseUseCase() {
+        return new GetExerciseFacade(exerciseRepository());
+    }
 }

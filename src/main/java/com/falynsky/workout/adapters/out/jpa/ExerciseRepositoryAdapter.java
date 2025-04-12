@@ -1,11 +1,10 @@
 package com.falynsky.workout.adapters.out.jpa;
 
 import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpa;
+import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpaMapper;
 import com.falynsky.workout.adapters.out.jpa.exercise.ExerciseJpaRepository;
 import com.falynsky.workout.domain.ExerciseRepository;
 import com.falynsky.workout.domain.model.Exercise;
-import com.falynsky.workout.domain.model.ExerciseType;
-import com.falynsky.workout.domain.model.MuscleGroup;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;
@@ -14,25 +13,34 @@ import java.util.Optional;
 public class ExerciseRepositoryAdapter implements ExerciseRepository {
 
     private final ExerciseJpaRepository exerciseJpaRepository;
+    private final ExerciseJpaMapper mapper;
 
     @Override
-    public boolean addNewExercise(Exercise exercise) {
-        ExerciseJpa exerciseJpa = new ExerciseJpa(
-                exercise.name(),
-                exercise.muscleGroup().name(),
-                exercise.type().name()
-        );
-        exerciseJpaRepository.save(exerciseJpa);
-        return true;
+    public Long addNewExercise(Exercise exercise) {
+        Optional<ExerciseJpa> foundExercise = exerciseJpaRepository.findByName(exercise.name());
+
+        if (foundExercise.isPresent()) {
+            ExerciseJpa exerciseJpa = foundExercise.get();
+            return exerciseJpa.getId();
+        }
+
+        ExerciseJpa exerciseJpa = mapper.toJpa(exercise);
+        ExerciseJpa exercies = exerciseJpaRepository.save(exerciseJpa);
+
+        return exercies.getId();
     }
 
     @Override
     public Optional<Exercise> findByName(String name) {
         return exerciseJpaRepository.findByName(name)
-                .map(exerciseJpa -> new Exercise(
-                        exerciseJpa.getName(),
-                        MuscleGroup.valueOf(exerciseJpa.getMuscleGroup()),
-                        ExerciseType.valueOf(exerciseJpa.getType())
-                ));
+                .map(mapper::toDomain);
     }
+
+    @Override
+    public void delete(Long id) {
+        ExerciseJpa exerciseJpa = exerciseJpaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Exercise with id " + id + " not found"));
+        exerciseJpaRepository.delete(exerciseJpa);
+    }
+
 }

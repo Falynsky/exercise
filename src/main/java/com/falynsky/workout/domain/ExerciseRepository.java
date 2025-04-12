@@ -6,7 +6,9 @@ import java.util.Optional;
 
 public interface ExerciseRepository {
 
-    boolean addNewExercise(Exercise exercise);
+    Long addNewExercise(Exercise exercise);
 
     Optional<Exercise> findByName(String name);
+
+    void delete(Long id);
 }

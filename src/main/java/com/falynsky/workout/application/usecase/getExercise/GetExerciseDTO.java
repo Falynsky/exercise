@@ -1,4 +1,4 @@
-package com.falynsky.workout.application.usecase;
+package com.falynsky.workout.application.usecase.getExercise;
 
 
 import jakarta.validation.constraints.NotEmpty;

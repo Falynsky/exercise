@@ -1,4 +1,4 @@
-package com.falynsky.workout.application.usecase;
+package com.falynsky.workout.application.usecase.getExercise;
 
 
 import com.falynsky.workout.domain.model.Exercise;
@@ -6,5 +6,7 @@ import com.falynsky.workout.domain.model.Exercise;
 import java.util.Optional;
 
 public interface GetExerciseUseCase {
+
     Optional<Exercise> getExerciseByName(GetExerciseDTO name);
+
 }

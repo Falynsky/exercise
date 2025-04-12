@@ -10,12 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExerciseJpa {
 
-    public ExerciseJpa(String name, String muscleGroup, String type) {
-        this.name = name;
-        this.muscleGroup = muscleGroup;
-        this.type = type;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)

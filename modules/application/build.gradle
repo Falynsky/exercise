@@ -1,0 +1,9 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation project(':modules:domain')
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.0'
+
+}

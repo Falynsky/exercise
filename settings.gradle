@@ -1,1 +1,14 @@
-rootProject.name = 'workout'
+rootProject.name = 'exercise-app'
+
+
+include 'modules:application'
+findProject(':modules:application')?.name = 'application'
+include 'modules:adapter'
+findProject(':modules:adapter')?.name = 'adapter'
+include 'modules:domain'
+findProject(':modules:domain')?.name = 'domain'
+include 'modules:infrastructre'
+findProject(':modules:infrastructre')?.name = 'infrastructre'
+include 'modules:exercise'
+findProject(':modules:exercise')?.name = 'exercise'
+

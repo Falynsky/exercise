@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/modules" />
             <option value="$PROJECT_DIR$/modules/adapter" />
             <option value="$PROJECT_DIR$/modules/application" />
+            <option value="$PROJECT_DIR$/modules/common" />
             <option value="$PROJECT_DIR$/modules/domain" />
             <option value="$PROJECT_DIR$/modules/exercise" />
             <option value="$PROJECT_DIR$/modules/infrastructre" />

@@ -1,12 +1,13 @@
 package com.falynsky.out.jpa;
 
 
-import com.falynsky.ExerciseRepository;
-import com.falynsky.model.Exercise;
-import com.falynsky.model.ExerciseType;
-import com.falynsky.model.MuscleGroup;
+import com.falynsky.exercise.ExerciseRepository;
+import com.falynsky.exercise.Exercise;
+import com.falynsky.exercise.ExerciseType;
+import com.falynsky.exercise.MuscleGroup;
 import com.falynsky.out.jpa.exercise.ExerciseJpa;
 import com.falynsky.out.jpa.exercise.ExerciseJpaRepository;
+import com.falynsky.out.jpa.exercise.mapper.ExerciseJpaMapper;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;
@@ -15,25 +16,13 @@ import java.util.Optional;
 public class ExerciseRepositoryAdapter implements ExerciseRepository {
 
     private final ExerciseJpaRepository exerciseJpaRepository;
+    private final ExerciseJpaMapper exerciseJpaMapper;
 
     @Override
     public boolean addNewExercise(Exercise exercise) {
-        ExerciseJpa exerciseJpa = new ExerciseJpa(
-                exercise.name(),
-                exercise.muscleGroup().name(),
-                exercise.type().name()
-        );
-        exerciseJpaRepository.save(exerciseJpa);
-        return true;
+        final ExerciseJpa exerciseJpa = exerciseJpaMapper.toJpa(exercise);
+        final ExerciseJpa save = exerciseJpaRepository.save(exerciseJpa);
+        return save.getId() != null;
     }
 
-    @Override
-    public Optional<Exercise> findByName(String name) {
-        return exerciseJpaRepository.findByName(name)
-                .map(exerciseJpa -> new Exercise(
-                        exerciseJpa.getName(),
-                        MuscleGroup.valueOf(exerciseJpa.getMuscleGroup()),
-                        ExerciseType.valueOf(exerciseJpa.getType())
-                ));
-    }
 }

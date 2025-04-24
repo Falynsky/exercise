@@ -1,33 +1,43 @@
 package com.falynsky.out.jpa.exercise;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "exercise")
 @Getter
+@Setter
 @NoArgsConstructor
 public class ExerciseJpa {
 
-    public ExerciseJpa(String name, String muscleGroup, String type) {
-        this.name = name;
-        this.muscleGroup = muscleGroup;
-        this.type = type;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private String muscleGroup;
+    private String description;
 
     @Column(nullable = false)
-    private String type;
+    private String muscleGroups;
 
+    @Column(nullable = false)
+    private String equipments;
+
+    @Column(nullable = false)
+    private String difficulty;
+
+    @Column(nullable = false)
+    private String exerciseType;
+
+    @Column(nullable = false)
+    Boolean isActive;
 }

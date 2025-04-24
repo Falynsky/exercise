@@ -3,5 +3,6 @@ plugins {
 }
 
 dependencies {
-
+    implementation project(':modules:common')
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.0'
 }

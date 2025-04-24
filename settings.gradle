@@ -11,4 +11,6 @@ include 'modules:infrastructre'
 findProject(':modules:infrastructre')?.name = 'infrastructre'
 include 'modules:exercise'
 findProject(':modules:exercise')?.name = 'exercise'
+include 'modules:common'
+findProject(':modules:common')?.name = 'common'
 

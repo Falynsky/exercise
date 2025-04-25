@@ -1,7 +1,8 @@
-package com.falynsky.out.jpa.exercise.mapper;
+package com.falynsky.mapper;
 
 import com.falynsky.exercise.*;
-import com.falynsky.out.jpa.exercise.ExerciseJpa;
+import com.falynsky.usecase.AddNewExerciseRequest;
+import com.falynsky.usecase.ExerciseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -10,18 +11,19 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mapper
-public interface ExerciseJpaMapper {
+public interface ExerciseDTOMapper {
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id", source = "id", qualifiedByName = "exerciseIdToId")
     @Mapping(target = "name", source = "name", qualifiedByName = "exerciseNameToName")
     @Mapping(target = "description", source = "description", qualifiedByName = "exerciseDescriptionToDescription")
     @Mapping(target = "muscleGroups", source = "muscleGroups", qualifiedByName = "muscleGroupsToString")
     @Mapping(target = "equipments", source = "equipments", qualifiedByName = "equipmentsToString")
-    ExerciseJpa toJpa(Exercise exercise);
+    ExerciseDTO toDTO(Exercise exercise);
 
-    @Mapping(target = "muscleGroups", source = "muscleGroups", qualifiedByName = "stringToMuscleGroups")
-    @Mapping(target = "equipments", source = "equipments", qualifiedByName = "stringToEquipments")
-    Exercise toDomain(ExerciseJpa exerciseJpa);
+    @Named("exerciseIdToId")
+    static String exerciseIdToId(ExerciseId id) {
+        return id.getValue().toString();
+    }
 
     @Named("exerciseNameToName")
     static String exerciseNameToName(ExerciseName name) {
@@ -34,30 +36,17 @@ public interface ExerciseJpaMapper {
     }
 
     @Named("muscleGroupsToString")
-    static String muscleGroupsToString(Set<MuscleGroup> muscleGroups) {
+    static Set<String> muscleGroupsToString(Set<MuscleGroup> muscleGroups) {
         return muscleGroups.stream()
                 .map(MuscleGroup::name)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.toSet());
     }
 
     @Named("equipmentsToString")
-   static String equipmentsToString(Set<Equipment> equipments) {
+    static Set<String> equipmentsToString(Set<Equipment> equipments) {
         return equipments.stream()
                 .map(Equipment::name)
-                .collect(Collectors.joining(","));
-    }
-
-    @Named("stringToMuscleGroups")
-    static Set<MuscleGroup> stringToMuscleGroups(String muscleGroups) {
-        return Set.of(muscleGroups.split(",")).stream()
-                .map(MuscleGroup::valueOf)
                 .collect(Collectors.toSet());
     }
 
-    @Named("stringToEquipments")
-    static Set<Equipment> stringToEquipments(String equipments) {
-        return Set.of(equipments.split(",")).stream()
-                .map(Equipment::valueOf)
-                .collect(Collectors.toSet());
-    }
 }

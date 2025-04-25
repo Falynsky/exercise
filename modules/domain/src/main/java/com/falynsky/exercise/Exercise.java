@@ -3,8 +3,6 @@ package com.falynsky.exercise;
 import com.falynsky.event.DomainIncomingEvent;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 

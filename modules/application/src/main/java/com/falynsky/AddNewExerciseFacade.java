@@ -3,7 +3,7 @@ package com.falynsky;
 
 import com.falynsky.exercise.*;
 import com.falynsky.mapper.ExerciseMapper;
-import com.falynsky.usecase.AddNewExerciseRequest;
+import com.falynsky.usecase.NewExerciseRequest;
 import com.falynsky.usecase.AddNewExerciseUseCase;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -18,8 +18,8 @@ class AddNewExerciseFacade implements AddNewExerciseUseCase {
     private final ExerciseMapper exerciseMapper;
 
     @Override
-    public String addNewExercise(@Valid AddNewExerciseRequest addNewExerciseRequest) {
-        final Exercise exercise = exerciseMapper.toModel(addNewExerciseRequest);
+    public String addNewExercise(@Valid NewExerciseRequest newExerciseRequest) {
+        final Exercise exercise = exerciseMapper.toModel(newExerciseRequest);
         final UUID uuid = exerciseRepository.addNewExercise(exercise);
         return  uuid.toString();
     }

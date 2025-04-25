@@ -1,7 +1,6 @@
 package com.falynsky.mapper;
 
 import com.falynsky.exercise.*;
-import com.falynsky.usecase.AddNewExerciseRequest;
 import com.falynsky.usecase.ExerciseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

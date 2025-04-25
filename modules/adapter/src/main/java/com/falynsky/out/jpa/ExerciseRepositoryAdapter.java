@@ -35,4 +35,25 @@ public class ExerciseRepositoryAdapter implements ExerciseRepository {
                 .map(exerciseJpaMapper::toDomain)
                 .collect(Collectors.toSet());
     }
+
+    @Override
+    public Optional<Exercise> getExerciseById(UUID id) {
+        return exerciseJpaRepository.findById(id)
+                .map(exerciseJpaMapper::toDomain);
+    }
+
+    @Override
+    public void updateExercise(UUID id, Exercise exercise) {
+        final ExerciseJpa exerciseFound = exerciseJpaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Exercise not found"));
+        final ExerciseJpa jpa = exerciseJpaMapper.toJpa(exercise);
+        exerciseFound.setName(jpa.getName());
+        exerciseFound.setDescription(jpa.getDescription());
+        exerciseFound.setMuscleGroups(jpa.getMuscleGroups());
+        exerciseFound.setExerciseType(jpa.getExerciseType());
+        exerciseFound.setEquipments(jpa.getEquipments());
+        exerciseFound.setExerciseType(jpa.getExerciseType());
+        exerciseFound.setMuscleGroups(jpa.getMuscleGroups());
+        exerciseFound.setEquipments(jpa.getEquipments());
+        exerciseJpaRepository.save(exerciseFound);
+    }
 }

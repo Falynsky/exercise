@@ -3,7 +3,7 @@ package com.falynsky.mapper;
 import com.falynsky.exercise.Equipment;
 import com.falynsky.exercise.Exercise;
 import com.falynsky.exercise.MuscleGroup;
-import com.falynsky.usecase.AddNewExerciseRequest;
+import com.falynsky.usecase.NewExerciseRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -17,7 +17,7 @@ public interface ExerciseMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "muscleGroups", source = "muscleGroups", qualifiedByName = "muscleGroupsFromString")
     @Mapping(target = "equipments", source = "equipments", qualifiedByName = "equipmentsFromString")
-    Exercise toModel(AddNewExerciseRequest addNewExerciseRequest);
+    Exercise toModel(NewExerciseRequest newExerciseRequest);
 
     @Named("muscleGroupsFromString")
     static Set<MuscleGroup> muscleGroupsFromString(Set<String> muscleGroups) {

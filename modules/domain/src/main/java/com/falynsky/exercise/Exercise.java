@@ -33,6 +33,7 @@ public class Exercise {
         this.isActive = Boolean.TRUE;
     }
 
+
     public void renameTo(String newName) {
         if (newName == null || newName.isBlank()) {
             throw new RuntimeException("Name cannot be empty");

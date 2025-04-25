@@ -12,6 +12,8 @@ import com.falynsky.out.jpa.exercise.mapper.ExerciseJpaMapper;
 import com.falynsky.out.jpa.exercise.mapper.ExerciseJpaMapperImpl;
 import com.falynsky.usecase.AddNewExerciseUseCase;
 import com.falynsky.usecase.GetAllExercisesUseCase;
+import com.falynsky.usecase.GetExerciseByIdUseCase;
+import com.falynsky.usecase.UpdateExerciseUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,6 +46,16 @@ public class MainConfiguration {
     @Bean
     public GetAllExercisesUseCase getAllExercisesUseCase() {
         return new GetAllExercisesFacade(exerciseRepository(), exerciseDTOMapper());
+    }
+
+    @Bean
+    public GetExerciseByIdUseCase getExerciseByIdUseCase() {
+        return new GetExerciseByIdFacade(exerciseRepository(), exerciseDTOMapper());
+    }
+
+    @Bean
+    public UpdateExerciseUseCase updateExerciseUseCase() {
+        return new UpdateExerciseFacade(exerciseRepository(), exerciseMapper());
     }
 
     @Bean

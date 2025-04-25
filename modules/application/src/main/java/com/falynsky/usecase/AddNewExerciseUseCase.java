@@ -5,5 +5,5 @@ import jakarta.validation.Valid;
 
 public interface AddNewExerciseUseCase {
 
-    void addNewExercise(@Valid AddNewExerciseRequest addNewExerciseRequest);
+    String addNewExercise(@Valid AddNewExerciseRequest addNewExerciseRequest);
 }

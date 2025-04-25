@@ -8,6 +8,9 @@ import com.falynsky.usecase.AddNewExerciseUseCase;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
+import java.util.UUID;
+
+
 @AllArgsConstructor
 class AddNewExerciseFacade implements AddNewExerciseUseCase {
 
@@ -15,8 +18,9 @@ class AddNewExerciseFacade implements AddNewExerciseUseCase {
     private final ExerciseMapper exerciseMapper;
 
     @Override
-    public void addNewExercise(@Valid AddNewExerciseRequest addNewExerciseRequest) {
+    public String addNewExercise(@Valid AddNewExerciseRequest addNewExerciseRequest) {
         final Exercise exercise = exerciseMapper.toModel(addNewExerciseRequest);
-        exerciseRepository.addNewExercise(exercise);
+        final UUID uuid = exerciseRepository.addNewExercise(exercise);
+        return  uuid.toString();
     }
 }

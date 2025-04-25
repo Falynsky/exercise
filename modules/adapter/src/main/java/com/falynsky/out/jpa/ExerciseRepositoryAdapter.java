@@ -11,6 +11,9 @@ import com.falynsky.out.jpa.exercise.mapper.ExerciseJpaMapper;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class ExerciseRepositoryAdapter implements ExerciseRepository {
@@ -19,10 +22,17 @@ public class ExerciseRepositoryAdapter implements ExerciseRepository {
     private final ExerciseJpaMapper exerciseJpaMapper;
 
     @Override
-    public boolean addNewExercise(Exercise exercise) {
+    public UUID addNewExercise(Exercise exercise) {
         final ExerciseJpa exerciseJpa = exerciseJpaMapper.toJpa(exercise);
         final ExerciseJpa save = exerciseJpaRepository.save(exerciseJpa);
-        return save.getId() != null;
+        return save.getId();
     }
 
+    @Override
+    public Set<Exercise> getAllExercises() {
+        return exerciseJpaRepository.findAll()
+                .stream()
+                .map(exerciseJpaMapper::toDomain)
+                .collect(Collectors.toSet());
+    }
 }

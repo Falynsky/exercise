@@ -1,10 +1,9 @@
 package com.falynsky.out.jpa;
 
 
-import com.falynsky.exercise.ExerciseRepository;
-import com.falynsky.exercise.Exercise;
-import com.falynsky.exercise.ExerciseType;
-import com.falynsky.exercise.MuscleGroup;
+import com.falynsky.model.exercise.vo.ExerciseId;
+import com.falynsky.port.ExerciseRepository;
+import com.falynsky.model.exercise.Exercise;
 import com.falynsky.out.jpa.exercise.ExerciseJpa;
 import com.falynsky.out.jpa.exercise.ExerciseJpaRepository;
 import com.falynsky.out.jpa.exercise.mapper.ExerciseJpaMapper;
@@ -22,14 +21,14 @@ public class ExerciseRepositoryAdapter implements ExerciseRepository {
     private final ExerciseJpaMapper exerciseJpaMapper;
 
     @Override
-    public UUID addNewExercise(Exercise exercise) {
+    public UUID save(Exercise exercise) {
         final ExerciseJpa exerciseJpa = exerciseJpaMapper.toJpa(exercise);
         final ExerciseJpa save = exerciseJpaRepository.save(exerciseJpa);
         return save.getId();
     }
 
     @Override
-    public Set<Exercise> getAllExercises() {
+    public Set<Exercise> findAll() {
         return exerciseJpaRepository.findAll()
                 .stream()
                 .map(exerciseJpaMapper::toDomain)
@@ -37,23 +36,18 @@ public class ExerciseRepositoryAdapter implements ExerciseRepository {
     }
 
     @Override
-    public Optional<Exercise> getExerciseById(UUID id) {
+    public Optional<Exercise> findById(UUID id) {
         return exerciseJpaRepository.findById(id)
                 .map(exerciseJpaMapper::toDomain);
     }
 
     @Override
-    public void updateExercise(UUID id, Exercise exercise) {
-        final ExerciseJpa exerciseFound = exerciseJpaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Exercise not found"));
+    public void update(Exercise exercise) {
+        ExerciseId id = exercise.getId();
+        UUID uuid = id.getValue();
+        final ExerciseJpa exerciseFound = exerciseJpaRepository.findById(uuid).orElseThrow(() -> new IllegalArgumentException("Exercise not found"));
         final ExerciseJpa jpa = exerciseJpaMapper.toJpa(exercise);
-        exerciseFound.setName(jpa.getName());
-        exerciseFound.setDescription(jpa.getDescription());
-        exerciseFound.setMuscleGroups(jpa.getMuscleGroups());
-        exerciseFound.setExerciseType(jpa.getExerciseType());
-        exerciseFound.setEquipments(jpa.getEquipments());
-        exerciseFound.setExerciseType(jpa.getExerciseType());
-        exerciseFound.setMuscleGroups(jpa.getMuscleGroups());
-        exerciseFound.setEquipments(jpa.getEquipments());
-        exerciseJpaRepository.save(exerciseFound);
+        jpa.setId(exerciseFound.getId());
+        exerciseJpaRepository.save(jpa);
     }
 }

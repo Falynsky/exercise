@@ -1,5 +1,7 @@
 package com.falynsky.usecase;
 
+import com.falynsky.command.UpdateExerciseCommand;
+
 public interface UpdateExerciseUseCase {
-    void updateExercise(String id, NewExerciseRequest newExerciseRequest);
+    void execute(UpdateExerciseCommand command);
 }

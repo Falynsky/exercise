@@ -1,6 +1,12 @@
-package com.falynsky.exercise;
+package com.falynsky.model.exercise;
 
-import com.falynsky.event.DomainIncomingEvent;
+import com.falynsky.model.exercise.enums.Difficulty;
+import com.falynsky.model.exercise.enums.Equipment;
+import com.falynsky.model.exercise.enums.ExerciseType;
+import com.falynsky.model.exercise.enums.MuscleGroup;
+import com.falynsky.model.exercise.vo.ExerciseDescription;
+import com.falynsky.model.exercise.vo.ExerciseId;
+import com.falynsky.model.exercise.vo.ExerciseName;
 import lombok.*;
 
 import java.util.Set;
@@ -33,7 +39,6 @@ public class Exercise {
         this.isActive = Boolean.TRUE;
     }
 
-
     public void renameTo(String newName) {
         if (newName == null || newName.isBlank()) {
             throw new RuntimeException("Name cannot be empty");
@@ -41,28 +46,36 @@ public class Exercise {
         this.name = ExerciseName.of(newName);
     }
 
-    public void changeDescription(ExerciseDescription newDescription) {
-        if (newDescription == null ||  newDescription.getValue() == null || newDescription.getValue().isBlank()) {
+    public void changeDescription(String newDescription) {
+        if (newDescription == null  || newDescription.isBlank()) {
             throw new RuntimeException("Description cannot be empty");
         }
-        this.description = newDescription;
+        this.description = ExerciseDescription.of(newDescription);
     }
 
-    public void changeMuscleGroup(Set<MuscleGroup> muscleGroups) {
+    public void changeMuscleGroups(Set<String> muscleGroups) {
         this.muscleGroups.clear();
-        this.muscleGroups.addAll(muscleGroups);
+        muscleGroups.stream()
+                .map(MuscleGroup::valueOf)
+                .forEach(this.muscleGroups::add);
     }
 
-    public void changeEquipment(Set<Equipment> equipments) {
+    public void changeEquipments(Set<String> equipments) {
         this.equipments.clear();
-        this.equipments.addAll(equipments);
+        equipments.stream()
+                .map(Equipment::valueOf)
+                .forEach(this.equipments::add);
     }
 
-    public void inactive() {
-        this.isActive = false;
+    public void changeDifficulty(String difficulty) {
+        this.difficulty = Difficulty.valueOf(difficulty);
     }
 
-    public void changeDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
+    public void changeExerciseType(String exerciseType) {
+        this.exerciseType = ExerciseType.valueOf(exerciseType);
+    }
+
+    public void changeActiveStatus() {
+        this.isActive = !this.isActive;
     }
 }

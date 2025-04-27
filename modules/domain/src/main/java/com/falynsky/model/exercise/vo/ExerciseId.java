@@ -1,14 +1,16 @@
-package com.falynsky.exercise;
+package com.falynsky.model.exercise.vo;
 
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.UUID;
+
 
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @RequiredArgsConstructor(staticName = "of")
 @EqualsAndHashCode
-public class ExerciseDescription implements Serializable {
-    private final String value;
+public class ExerciseId  implements Serializable {
+    private final UUID value;
 }

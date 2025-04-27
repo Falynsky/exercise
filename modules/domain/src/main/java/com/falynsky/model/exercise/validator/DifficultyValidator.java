@@ -1,6 +1,6 @@
-package com.falynsky.exercise.validator;
+package com.falynsky.model.exercise.validator;
 
-import com.falynsky.exercise.Difficulty;
+import com.falynsky.model.exercise.enums.Difficulty;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

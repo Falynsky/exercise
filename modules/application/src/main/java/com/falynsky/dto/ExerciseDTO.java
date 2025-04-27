@@ -1,4 +1,4 @@
-package com.falynsky.usecase;
+package com.falynsky.dto;
 
 import java.util.Set;
 public record ExerciseDTO(

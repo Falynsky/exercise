@@ -1,5 +1,8 @@
 package com.falynsky.usecase;
 
+import com.falynsky.dto.ExerciseDTO;
+import com.falynsky.query.GetExerciseQuery;
+
 public interface GetExerciseByIdUseCase {
-ExerciseDTO getExerciseById(String id);
+ExerciseDTO getExerciseById(GetExerciseQuery id);
 }

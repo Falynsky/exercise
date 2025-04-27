@@ -1,4 +1,4 @@
-package com.falynsky.exercise;
+package com.falynsky.model.exercise.vo;
 
 import lombok.*;
 
@@ -9,6 +9,6 @@ import java.io.Serializable;
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @RequiredArgsConstructor(staticName = "of")
 @EqualsAndHashCode
-public class ExerciseName  implements Serializable {
+public class ExerciseDescription implements Serializable {
     private final String value;
 }

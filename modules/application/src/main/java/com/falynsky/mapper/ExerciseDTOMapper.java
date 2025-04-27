@@ -1,7 +1,12 @@
 package com.falynsky.mapper;
 
-import com.falynsky.exercise.*;
-import com.falynsky.usecase.ExerciseDTO;
+import com.falynsky.model.exercise.*;
+import com.falynsky.dto.ExerciseDTO;
+import com.falynsky.model.exercise.enums.Equipment;
+import com.falynsky.model.exercise.enums.MuscleGroup;
+import com.falynsky.model.exercise.vo.ExerciseDescription;
+import com.falynsky.model.exercise.vo.ExerciseId;
+import com.falynsky.model.exercise.vo.ExerciseName;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

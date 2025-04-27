@@ -1,6 +1,10 @@
 package com.falynsky.out.jpa.exercise.mapper;
 
-import com.falynsky.exercise.*;
+import com.falynsky.model.exercise.*;
+import com.falynsky.model.exercise.enums.Equipment;
+import com.falynsky.model.exercise.enums.MuscleGroup;
+import com.falynsky.model.exercise.vo.ExerciseDescription;
+import com.falynsky.model.exercise.vo.ExerciseName;
 import com.falynsky.out.jpa.exercise.ExerciseJpa;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,4 +1,4 @@
-package com.falynsky.exercise.validator;
+package com.falynsky.model.exercise.validator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

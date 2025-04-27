@@ -1,5 +1,6 @@
 package com.falynsky.handler;
 
+import com.falynsky.domain.UnitOfWork;
 import com.falynsky.dto.ExerciseDTO;
 import com.falynsky.mapper.ExerciseDTOMapper;
 import com.falynsky.model.exercise.Exercise;
@@ -16,6 +17,7 @@ public class ExerciseQueryHandler implements GetAllExercisesUseCase, GetExercise
 
     private final ExerciseRepository exerciseRepository;
     private final ExerciseDTOMapper exerciseDTOMapper;
+    private final UnitOfWork unitOfWork;
 
     @Override
     public Set<ExerciseDTO> getAllExercises() {
@@ -27,9 +29,11 @@ public class ExerciseQueryHandler implements GetAllExercisesUseCase, GetExercise
 
     @Override
     public ExerciseDTO getExerciseById(GetExerciseQuery query) {
-        return exerciseRepository.findById(query.uuid())
-                .map(exerciseDTOMapper::toDTO)
-                .orElseThrow(() -> new IllegalArgumentException("Exercise not found"));
+        return unitOfWork.readOnly(() ->
+                exerciseRepository.findById(query.uuid())
+                        .map(exerciseDTOMapper::toDTO)
+                        .orElseThrow(() -> new IllegalArgumentException("Exercise not found"))
+        );
     }
 
 }

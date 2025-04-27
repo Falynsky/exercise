@@ -26,7 +26,7 @@ public interface ExerciseDTOMapper {
 
     @Named("exerciseIdToId")
     static String exerciseIdToId(ExerciseId id) {
-        return id.getValue().toString();
+        return id.getId().toString();
     }
 
     @Named("exerciseNameToName")

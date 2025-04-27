@@ -1,4 +1,4 @@
-package com.falynsky.services;
+package com.falynsky.service;
 
 import com.falynsky.model.exercise.Exercise;
 import lombok.AllArgsConstructor;

@@ -5,7 +5,7 @@ import com.falynsky.command.UpdateExerciseCommand;
 import com.falynsky.mapper.ExerciseMapper;
 import com.falynsky.model.exercise.Exercise;
 import com.falynsky.port.ExerciseRepository;
-import com.falynsky.services.ExerciseModificationPolicy;
+import com.falynsky.service.ExerciseModificationPolicy;
 import com.falynsky.usecase.AddNewExerciseUseCase;
 import com.falynsky.usecase.UpdateExerciseUseCase;
 import jakarta.validation.Valid;

@@ -41,13 +41,14 @@ public class ExerciseRepositoryAdapter implements ExerciseRepository {
                 .map(exerciseJpaMapper::toDomain);
     }
 
+    //todo: add Transactional annotation somewhere
     @Override
     public void update(Exercise exercise) {
         ExerciseId id = exercise.getId();
-        UUID uuid = id.getValue();
+        UUID uuid = id.getId();
         final ExerciseJpa exerciseFound = exerciseJpaRepository.findById(uuid).orElseThrow(() -> new IllegalArgumentException("Exercise not found"));
-        final ExerciseJpa jpa = exerciseJpaMapper.toJpa(exercise);
-        jpa.setId(exerciseFound.getId());
+        final ExerciseJpa jpa = exerciseJpaMapper.toJpa(exercise); //todo: probably this JPA object will be detached and hibernate wont like it, but i dont care rn.
+        jpa.setId(exerciseFound.getId()); //todo: maybe after change ID it will be attached again in save()
         exerciseJpaRepository.save(jpa);
     }
 }

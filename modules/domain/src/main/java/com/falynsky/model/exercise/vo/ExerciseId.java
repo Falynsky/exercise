@@ -12,5 +12,5 @@ import java.util.UUID;
 @RequiredArgsConstructor(staticName = "of")
 @EqualsAndHashCode
 public class ExerciseId  implements Serializable {
-    private final UUID value;
+    private final UUID id;
 }

@@ -24,6 +24,7 @@ public class ExerciseRepositoryAdapter implements ExerciseRepository {
     public UUID save(Exercise exercise) {
         final ExerciseJpa exerciseJpa = exerciseJpaMapper.toJpa(exercise);
         final ExerciseJpa save = exerciseJpaRepository.save(exerciseJpa);
+
         return save.getId();
     }
 

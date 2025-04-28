@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 public interface ExerciseJpaMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "name", source = "name", qualifiedByName = "exerciseNameToName")
-    @Mapping(target = "description", source = "description", qualifiedByName = "exerciseDescriptionToDescription")
+    @Mapping(target = "name", source = "name.value")
+    @Mapping(target = "description", source = "description.value")
     @Mapping(target = "muscleGroups", source = "muscleGroups", qualifiedByName = "muscleGroupsToString")
     @Mapping(target = "equipments", source = "equipments", qualifiedByName = "equipmentsToString")
     ExerciseJpa toJpa(Exercise exercise);
@@ -26,16 +26,6 @@ public interface ExerciseJpaMapper {
     @Mapping(target = "muscleGroups", source = "muscleGroups", qualifiedByName = "stringToMuscleGroups")
     @Mapping(target = "equipments", source = "equipments", qualifiedByName = "stringToEquipments")
     Exercise toDomain(ExerciseJpa exerciseJpa);
-
-    @Named("exerciseNameToName")
-    static String exerciseNameToName(ExerciseName name) {
-        return name.getValue();
-    }
-
-    @Named("exerciseDescriptionToDescription")
-    static String exerciseDescriptionToDescription(ExerciseDescription description) {
-        return description.getValue();
-    }
 
     @Named("muscleGroupsToString")
     static String muscleGroupsToString(Set<MuscleGroup> muscleGroups) {

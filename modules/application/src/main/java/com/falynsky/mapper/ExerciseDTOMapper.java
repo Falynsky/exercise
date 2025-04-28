@@ -17,27 +17,12 @@ import java.util.stream.Collectors;
 @Mapper
 public interface ExerciseDTOMapper {
 
-    @Mapping(target = "id", source = "id", qualifiedByName = "exerciseIdToId")
-    @Mapping(target = "name", source = "name", qualifiedByName = "exerciseNameToName")
-    @Mapping(target = "description", source = "description", qualifiedByName = "exerciseDescriptionToDescription")
+    @Mapping(target = "id", source = "id.id")
+    @Mapping(target = "name", source = "name.value")
+    @Mapping(target = "description", source = "description.value")
     @Mapping(target = "muscleGroups", source = "muscleGroups", qualifiedByName = "muscleGroupsToString")
     @Mapping(target = "equipments", source = "equipments", qualifiedByName = "equipmentsToString")
     ExerciseDTO toDTO(Exercise exercise);
-
-    @Named("exerciseIdToId")
-    static String exerciseIdToId(ExerciseId id) {
-        return id.getId().toString();
-    }
-
-    @Named("exerciseNameToName")
-    static String exerciseNameToName(ExerciseName name) {
-        return name.getValue();
-    }
-
-    @Named("exerciseDescriptionToDescription")
-    static String exerciseDescriptionToDescription(ExerciseDescription description) {
-        return description.getValue();
-    }
 
     @Named("muscleGroupsToString")
     static Set<String> muscleGroupsToString(Set<MuscleGroup> muscleGroups) {

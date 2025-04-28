@@ -1,17 +1,16 @@
 package com.falynsky;
 
 
-import com.falynsky.adapter.SpringTransactionalUnitOfWork;
 import com.falynsky.domain.UnitOfWork;
 import com.falynsky.handler.ExerciseCommandHandler;
 import com.falynsky.handler.ExerciseQueryHandler;
 import com.falynsky.mapper.*;
-import com.falynsky.port.ExerciseRepository;
-import com.falynsky.service.ExerciseModificationPolicy;
 import com.falynsky.out.jpa.ExerciseRepositoryAdapter;
 import com.falynsky.out.jpa.exercise.ExerciseJpaRepository;
 import com.falynsky.out.jpa.exercise.mapper.ExerciseJpaMapper;
 import com.falynsky.out.jpa.exercise.mapper.ExerciseJpaMapperImpl;
+import com.falynsky.port.ExerciseRepository;
+import com.falynsky.service.ExerciseModificationPolicy;
 import com.falynsky.usecase.AddNewExerciseUseCase;
 import com.falynsky.usecase.GetAllExercisesUseCase;
 import com.falynsky.usecase.GetExerciseByIdUseCase;
@@ -25,6 +24,7 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class MainConfiguration {
 
+    private final UnitOfWork unitOfWork;
     private final ExerciseJpaRepository exerciseJpaRepository;
 
     @Bean
@@ -40,11 +40,6 @@ public class MainConfiguration {
     @Bean
     public ExerciseDTOMapper exerciseDTOMapper() {
         return new ExerciseDTOMapperImpl();
-    }
-
-    @Bean
-    public UnitOfWork unitOfWork(){
-        return new SpringTransactionalUnitOfWork();
     }
 
     @Bean
@@ -74,7 +69,7 @@ public class MainConfiguration {
 
     @Bean
     public ExerciseQueryHandler exerciseQueryHandler() {
-        return new ExerciseQueryHandler(exerciseRepository(), exerciseDTOMapper(), unitOfWork());
+        return new ExerciseQueryHandler(exerciseRepository(), exerciseDTOMapper(), unitOfWork);
     }
 
     @Primary

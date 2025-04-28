@@ -5,8 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.function.Supplier;
 
-public class SpringTransactionalUnitOfWork
-      implements UnitOfWork {
+public class SpringTransactionalUnitOfWork implements UnitOfWork {
 
     @Transactional
     @Override

@@ -16,14 +16,15 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("exercise")
-public class ExerciseQueryController {
+class ExerciseQueryController {
 
     private final GetAllExercisesUseCase getAllExercisesUseCase;
     private final GetExerciseByIdUseCase getExerciseByIdUseCase;
 
     public ExerciseQueryController(
             @Qualifier("getAllExercisesUseCase") GetAllExercisesUseCase getAllExercisesUseCase,
-            @Qualifier("getExerciseByIdUseCase") GetExerciseByIdUseCase getExerciseByIdUseCase) {
+            @Qualifier("getExerciseByIdUseCase") GetExerciseByIdUseCase getExerciseByIdUseCase
+    ) {
         this.getAllExercisesUseCase = getAllExercisesUseCase;
         this.getExerciseByIdUseCase = getExerciseByIdUseCase;
     }

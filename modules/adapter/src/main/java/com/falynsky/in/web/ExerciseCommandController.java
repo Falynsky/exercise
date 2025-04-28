@@ -15,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("exercise")
-public class ExerciseCommandController {
+class ExerciseCommandController {
 
     private final ExerciseCommandMapper commandMapper;
     private final AddNewExerciseUseCase addNewExerciseUseCase;
